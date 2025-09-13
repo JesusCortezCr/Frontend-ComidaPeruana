@@ -3,7 +3,7 @@ const Footer=()=>{
 
     return(
         <>
-        <p>Footer</p>
+        
         <footer className="bg-[#413636] text-gray-200">
            <div className="max-w-6xl mx-auto px-6 py-12">
             {/*Definimos grid col*/}
