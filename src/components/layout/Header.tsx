@@ -9,7 +9,9 @@ const Header = () => {
   return (
     <header className="w-full">
       {/* Barra superior marron */}
-      <div className="bg-[#3B2E2E] text-white text-sm flex justify-between items-center px-6 py-2">
+
+      
+      <div className=" h-[50px] bg-[#3B2E2E] text-white text-sm flex justify-between items-center px-6 py-2">
         <div className="flex space-x-6">
           <span>📞 (01) 456 - 0107</span>
           <span>✉️ gastronomia-peruana@hotmail.com</span>
