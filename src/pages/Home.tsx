@@ -1,12 +1,14 @@
 import HomeCard from "../components/HomeCard";
 import { HomeCards } from "../data/HomeCards";
+import backgroundImage from '../assets/images/fondo.png';
 
 const Home=()=>{
 
     return(
         <>
-        <h1>Hola desde el home</h1>
-        <div className="bg-yellow-200 py-15 px-8">
+
+        <div className="h-[500px] py-15 px-8 bg-cover bg-center"
+                style={{ backgroundImage: `url(${backgroundImage})` }}>
             <h2 className="text-[#404040] text-[70px] text-center">La mejor comida</h2>
             <p className="text-center text-[15px] my-5">¿Quieres aprender y probar todo sobre la gastronomía peruana? Estas en el lugar correcto</p>
 
