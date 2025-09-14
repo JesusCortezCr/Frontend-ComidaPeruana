@@ -10,11 +10,11 @@ const Home=()=>{
         <div className="h-[500px] py-15 px-8 bg-cover bg-center"
                 style={{ backgroundImage: `url(${backgroundImage})` }}>
             <h2 className="text-[#404040] text-[70px] text-center">La mejor comida</h2>
-            <p className="text-center text-[15px] my-5">¿Quieres aprender y probar todo sobre la gastronomía peruana? Estas en el lugar correcto</p>
+            <p className="text-center text-[20px] mt-10">¿Quieres aprender y probar todo sobre la gastronomía peruana? Estas en el lugar correcto</p>
 
             <div className="flex flex-row justify-center gap-4 flex-wrap my-5">
-            <a className="bg-[#E56767] text-white p-2 w-[150px] text-center rounded-2xl"  href="">Comprar</a>
-            <a className="bg-[#FCF8F8] text-[#434343] p-2 w-[150px] text-center rounded-2xl" href="">Explorar</a>
+            <a className="bg-[#E56767] text-white p-2 w-[150px] text-center rounded-2xl mt-20"  href="">Comprar</a>
+            <a className="bg-[#FCF8F8] text-[#434343] p-2 w-[150px] text-center rounded-2xl mt-20" href="">Explorar</a>
             </div>
         </div>
         <div>
