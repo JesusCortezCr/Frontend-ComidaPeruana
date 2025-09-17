@@ -4,7 +4,7 @@ import { Phone, Mail, Search, Menu } from "lucide-react";
 
 const Header = () => {
   return (
-    <header className="sticky top-0 z-50">
+    <header className="sticky top-0 z-50 shadow-md">
       {/* ── Barra superior (oscura) ───────────────────────────── */}
       <div className="bg-[#413636] text-gray-200 text-xs">
         <div className="max-w-6xl mx-auto px-6 py-2 flex items-center justify-between">
