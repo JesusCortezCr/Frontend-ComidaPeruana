@@ -1,54 +1,43 @@
-import { useState } from "react";
-import { Search, Menu } from "lucide-react";
+import { Link } from "react-router-dom";
+import NavBar from "../layout/Navbar";
+import { Phone, Mail, Search, Menu } from "lucide-react";
 
 const Header = () => {
-  const [active, setActive] = useState("Inicio");
-
-  const navItems = ["Inicio", "Menú", "Favoritos", "Nosotros", "Carrito"];
-
   return (
-    <header className="w-full">
-      {/* Barra superior marron */}
-
-      
-      <div className=" h-[50px] bg-[#3B2E2E] text-white text-sm flex justify-between items-center px-6 py-2">
-        <div className="flex space-x-6">
-          <span>📞 (01) 456 - 0107</span>
-          <span>✉️ gastronomia-peruana@hotmail.com</span>
-        </div>
-        <div className="flex space-x-4">
-          <a href="#"><img src="/public/facebook.png" className="w-4 h-4" /></a>
-          <a href="#"><img src="/public/instagram.png" className="w-4 h-4" /></a>
+    <header className="sticky top-0 z-50 shadow-md">
+      {/* ── Barra superior (oscura) ───────────────────────────── */}
+      <div className="bg-[#413636] text-gray-200 text-xs">
+        <div className="max-w-6xl mx-auto px-6 py-2 flex items-center justify-between">
+          {/* Izquierda: teléfono + email */}
+          <div className="flex items-center gap-6">
+            <span className="flex items-center gap-2">
+              <Phone className="w-4 h-4" />
+              (01) 857 - 0107
+            </span>
+            <a
+              href="mailto:gastronomiaperuana@peru.com"
+              className="flex items-center gap-2 hover:text-white"
+            >
+              <Mail className="w-4 h-4" />
+              gastronomiaperuana@peru.com
+            </a>
+          </div>
         </div>
       </div>
 
-      {/* Barra de navegación */}
-      <nav className="flex items-center justify-between px-6 py-4 bg-white shadow">
-        {/* Menú centrado */}
-        <div className="flex-1 flex justify-center">
-          <div className="flex space-x-6">
-            {navItems.map((item) => (
-              <button
-                key={item}
-                onClick={() => setActive(item)}
-                className={`px-4 py-2 rounded-full font-semibold transition ${
-                  active === item
-                    ? "bg-[#3B2E2E] text-white"
-                    : "text-gray-800 hover:bg-[#3B2E2E] hover:text-white"
-                }`}
-              >
-                {item}
-              </button>
-            ))}
-          </div>
-        </div>
+      {/* ── Barra principal (blanca) ──────────────────────────── */}
+      <div className="bg-white text-[#413636]">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+          {/* Logo / Nombre */}
+          <Link to="/" className="text-2xl font-bold tracking-wide">
+            <span className="text-[#E56767]">Gastronomía</span> Peruana
+          </Link>
 
-        {/* Buscador + menú hamburguesa */}
-        <div className="flex space-x-4 items-center">
-          <Search className="w-5 h-5 text-gray-600 cursor-pointer hover:text-[#3B2E2E]" />
-          <Menu className="w-6 h-6 text-gray-600 cursor-pointer hover:text-[#3B2E2E]" />
+          {/* Menú (NavBar) */}
+          <NavBar />
+
         </div>
-      </nav>
+      </div>
     </header>
   );
 };
