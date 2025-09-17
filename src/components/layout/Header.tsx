@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import NavBar from "../layout/Navbar";
-import { Phone, Mail, Search, Menu } from "lucide-react";
+import { Phone, Mail} from "lucide-react";
 
 const Header = () => {
   return (
