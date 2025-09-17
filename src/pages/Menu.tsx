@@ -9,7 +9,7 @@ const Menu = () => {
         <div>
             <h1 className="text-center text-[50px]">Menú</h1>
             <h2 className="text-center text-[30px] text-[#2C2F24] my-2.5 ">Elige el plato que desees comer</h2>
-            <div className="flex flex-row p-4 justify-around">
+            <div className="flex flex-row p-4 justify-around flex-wrap gap-2">
                 <div className="bg-[#E56767] p-3 border-1 w-[175px] text-center text-[#FFFFFF] rounded-2xl">
                     <span>Tipo de plato</span>
                     <br />
@@ -38,7 +38,7 @@ const Menu = () => {
                     </select>
                 </div>
                 <div>
-                    <button className="bg-[#473B3B] text-amber-50 p-3 rounded-2xl">Eliminar filtro</button>
+                    <button className="bg-[#473B3B] text-amber-50 p-3 rounded-2xl hover:bg-amber-800">Eliminar filtro</button>
                 </div>
             </div>
             <PlatosLista dishes={PlatosListData}></PlatosLista>

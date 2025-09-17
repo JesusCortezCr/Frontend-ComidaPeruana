@@ -8,7 +8,7 @@ const AddToCartButton = ({ dishId }: Props) => {
 
     const { addToCart } = useCart();
     return (
-        <button onClick={() => addToCart(dishId)}>
+        <button className="w-28 p-1.5 m-2 rounded-2xl border-1 bg-[#ffff] hover:bg-[#E56767]" onClick={() => addToCart(dishId)}>
             🛒
         </button>
     );
