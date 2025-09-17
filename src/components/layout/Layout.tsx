@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 import Header from "./Header";
-import NavBar from "./Navbar";
+
 import Footer from "./Footer";
 
 const Layout=()=>{
@@ -8,7 +8,6 @@ const Layout=()=>{
         <div>
             <header>
             <Header></Header>
-            <NavBar></NavBar>
             </header>
             <main>
                 <Outlet></Outlet>
