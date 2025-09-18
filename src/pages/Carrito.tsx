@@ -18,10 +18,10 @@ const Carrito = () => {
 
   return (
     <div className="w-full min-h-screen bg-gray-50 p-6 md:p-10">
-      {/* Responsivo */}
+
       <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 gap-5">
         
-        {/* Carrito de compras */}
+
         <div className="bg-white p-6 rounded-2xl shadow-md">
           <h1 className="text-2xl font-semibold mb-6 text-gray-800">
             Carrito de compras
@@ -33,7 +33,7 @@ const Carrito = () => {
                 key={p.id}
                 className="grid grid-cols-3 gap-5 items-center rounded-2xl p-4 shadow-md hover:shadow-lg transition">
               
-              {/* Carta más nombre */}
+
               <div className="flex flex-col items-center">
                 <img
                   src={p.imagen}
@@ -43,7 +43,7 @@ const Carrito = () => {
                 <p className="font-medium text-center mt-2">{p.nombre}</p> 
               </div>
 
-              {/* Precio */}
+
               <div className="flex flex-col items-center"> Precio
                 <p className="text-gray-700">S/ {p.precio}.00</p>
                 <p className="text-sm text-gray-500 mt-8">
@@ -51,7 +51,7 @@ const Carrito = () => {
                 </p>
               </div>
 
-              {/* Cantidad */}
+
               <div className="flex flex-col items-center"> Cantidad
                 <p className="text-gray-700">{p.cantidad}</p>
               </div>  
@@ -60,7 +60,7 @@ const Carrito = () => {
           </div>
         </div>
 
-        {/* Resumen de compra */}
+
         <div className="bg-white p-6 rounded-2xl shadow-md flex flex-col ">
           <div>
             <h2 className="text-xl font-semibold mb-6 text-gray-800">
