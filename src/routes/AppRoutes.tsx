@@ -6,6 +6,7 @@ import InicioSesion from "../pages/InicioSesion";
 import Menu from "../pages/Menu";
 import Carrito from "../pages/Carrito";
 import Nosotros from "../pages/Nosotros";
+import Favoritos from "../pages/Favoritos";
 
 const AppRoutes = () => {
     return (
@@ -20,6 +21,7 @@ const AppRoutes = () => {
                         <Route path="menu" element={<Menu></Menu>}></Route>
                         <Route path="carrito" element={<Carrito></Carrito>}></Route>
                         <Route path="nosotros" element={<Nosotros></Nosotros>}></Route>
+                        <Route path="favoritos" element={<Favoritos></Favoritos>}></Route>
                     </Route>
                 </Routes>
             </BrowserRouter>
