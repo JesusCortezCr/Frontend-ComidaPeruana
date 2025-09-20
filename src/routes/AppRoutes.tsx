@@ -4,6 +4,8 @@ import Home from "../pages/Home";
 import Registro from "../pages/Registro";
 import InicioSesion from "../pages/InicioSesion";
 import Menu from "../pages/Menu";
+import Carrito from "../pages/Carrito";
+import Nosotros from "../pages/Nosotros";
 
 const AppRoutes = () => {
     return (
@@ -16,6 +18,8 @@ const AppRoutes = () => {
                         <Route path="registro" element={<Registro></Registro>}></Route>
                         <Route path="inicio-sesion" element={<InicioSesion></InicioSesion>}></Route>
                         <Route path="menu" element={<Menu></Menu>}></Route>
+                        <Route path="carrito" element={<Carrito></Carrito>}></Route>
+                        <Route path="nosotros" element={<Nosotros></Nosotros>}></Route>
                     </Route>
                 </Routes>
             </BrowserRouter>

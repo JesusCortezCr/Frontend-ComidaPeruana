@@ -29,9 +29,21 @@ const NavBar = () => {
             Carrito
           </Link>
         </li>
+        <li>
+          <Link to="/registro" className="text-[#413636] hover:text-[#E56767] transition">
+            Registro
+          </Link>
+        </li>
+        <li>
+          <Link to="/inicio-sesion" className="text-[#413636] hover:text-[#E56767] transition">
+            Inicio sesion
+          </Link>
+        </li>
       </ul>
     </nav>
   );
 };
+
+
 
 export default NavBar;

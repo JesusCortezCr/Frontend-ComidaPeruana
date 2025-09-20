@@ -3,6 +3,7 @@ import NavBar from "../layout/Navbar";
 import { Phone, Mail} from "lucide-react";
 
 const Header = () => {
+
   return (
     <header className="sticky top-0 z-50 shadow-md">
       {/* ── Barra superior (oscura) ───────────────────────────── */}
