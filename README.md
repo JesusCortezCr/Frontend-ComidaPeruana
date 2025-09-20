@@ -1,7 +1,7 @@
 # 🍽️ Comida Peruana webApp
 
 <p align="center">
-  <img src="./assets/home.png" alt="Banner Comida Peruana" width="600"/>
+  <img src="./assets/home.png" alt="Banner Comida Peruana" width="400"/>
 </p>
 
 ## 📖 Descripción
@@ -19,7 +19,7 @@ La interfaz se está diseñando en **Figma**, cuidando la experiencia del usuari
 El frontend está orientado a ser **intuitivo, moderno y responsive**, adaptándose a cualquier dispositivo.  
 
 <p align="center">
-  <img src="./assets/carrito.png" alt="Mockup del proyecto" width="500"/>
+  <img src="./assets/carrito.png" alt="Mockup del proyecto" width="400"/>
 </p>
 
 ---
@@ -46,7 +46,7 @@ El frontend está orientado a ser **intuitivo, moderno y responsive**, adaptánd
 ## 🖼️ Vista previa
 
 <p align="center">
-  <img src="./assets/iniciosesion.png" alt="Vista previa de la app" width="600"/>
+  <img src="./assets/iniciosesion.png" alt="Vista previa de la app" width="400"/>
 </p>
 
 ---
