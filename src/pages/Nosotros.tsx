@@ -1,3 +1,6 @@
+import MiembrosCard from "../components/MiembrosCard";
+import { Integrantes } from "../data/Integrantes";
+
 const Nosotros = () => {
   return (
     <div className="w-full min-h-screen bg-gray-50 p-6 md:p-12">
@@ -9,7 +12,7 @@ const Nosotros = () => {
 
     
         <p className="text-gray-700 text-lg leading-relaxed mb-6 text-justify">
-          En <span className="font-semibold">Gastronomía Peruana</span> nos sentimos
+          En <span className="font-semibold">SoftEat</span> nos sentimos
           orgullosos de ofrecer lo mejor de nuestra cultura gastronómica en cada mesa.
           Nuestro impacto en la industria se debe a la pasión y dedicacion con la que preparamos
           cada plato especial,asimismo combinando recetas tradicionales con un servicio moderno accesible y de calidad para que nuestros clientes esten satisfechos.
@@ -20,12 +23,12 @@ const Nosotros = () => {
             Nuestro equipo de trabajo
           </h2>
 
-          <div className="flex justify-center rounded-2xl overflow-hidden mb-6">
-            <img
-              src="/equipoGastronomico.jpg"
-              alt="Equipo Gastronomía Peruana"
-              className="rounded-2xl shadow-lg w-full md:w-3/4 object-cover"
-            />
+          <div className="">
+            <div className="bg-amber-300">
+              {Integrantes.map((miembro)=>(
+                <MiembrosCard key={miembro.id}  imagen={miembro.imagen} nombre={miembro.nombre} descripcion={miembro.descripcion} carrera={miembro.carrera}></MiembrosCard>
+              ))}
+            </div>
           </div>
           <p className="text-center text-gray-600 mt-4">
             Un equipo comprometido en rescatar la esencia de nuestra cocina peruana.
