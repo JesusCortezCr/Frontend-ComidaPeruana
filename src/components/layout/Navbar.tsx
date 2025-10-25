@@ -38,6 +38,12 @@ const NavBar = () => {
                 Carrito
               </Link>
             </li>
+            <li>
+              <Link to="/perfil" className="text-[#413636] hover:text-[#E56767] transition">
+                Mi perfil
+              </Link>
+            </li>
+
           </>
         )}
 

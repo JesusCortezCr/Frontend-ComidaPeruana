@@ -37,6 +37,7 @@ const InicioSesion: React.FC = () => {
         // Mostrar error del servidor
         setError(result.message || "Error al iniciar sesión");
       }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       setError("Error inesperado. Por favor, intenta de nuevo.");
     } finally {

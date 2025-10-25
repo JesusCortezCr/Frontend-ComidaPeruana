@@ -56,6 +56,7 @@ const Registro: React.FC = () => {
         // Mostrar error del servidor
         setError(result.message || "Error al registrar usuario");
       }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       setError("Error inesperado. Por favor, intenta de nuevo.");
     } finally {
