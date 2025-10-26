@@ -10,7 +10,7 @@ const Nosotros = () => {
           Sobre nosotros
         </h1>
 
-        <p className="text-gray-700 text-lg leading-relaxed mb-6 text-justify opacity-0 translate-y-5 animate-fade-in delay-100">
+        <p className="text-gray-700 text-1xl leading-relaxed mb-6 text-justify opacity-0 translate-y-5 animate-fade-in delay-100">
           En <span className="font-semibold">SoftEat</span> nos sentimos
           orgullosos de ofrecer lo mejor de nuestra cultura gastronómica en cada mesa.
           Nuestro impacto en la industria se debe a la pasión y dedicacion con la que preparamos

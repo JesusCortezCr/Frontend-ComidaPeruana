@@ -43,7 +43,7 @@ const Perfil: React.FC = () => {
 
           {/* Sección izquierda: formulario */}
           <div className="space-y-5">
-            {/* Nombre y Apellido */}
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm text-gray-600 mb-1">Nombre</label>
@@ -76,7 +76,6 @@ const Perfil: React.FC = () => {
               </div>
             </div>
 
-            {/* Correo */}
             <div>
               <label className="block text-sm text-gray-600 mb-1">Correo</label>
               <input
@@ -88,7 +87,6 @@ const Perfil: React.FC = () => {
               />
             </div>
 
-            {/* Teléfono */}
             <div>
               <label className="block text-sm text-gray-600 mb-1">Teléfono</label>
               <input
@@ -104,7 +102,6 @@ const Perfil: React.FC = () => {
               />
             </div>
 
-            {/* Botones */}
             <div className="flex justify-center gap-5 mt-10">
               {!editando ? (
                 <button
@@ -132,7 +129,6 @@ const Perfil: React.FC = () => {
             </div>
           </div>
 
-          {/* Seccion imagen perfil*/}
           <div className="flex justify-center items-center opacity-0 translate-y-5 animate-fade-in delay-400">
             <img
               src={perfilImg}
@@ -143,8 +139,8 @@ const Perfil: React.FC = () => {
         </div>
 
         <p className="text-center text-gray-600 mt-12 opacity-0 translate-y-5 animate-fade-in delay-600">
-          <span className="font-semibold">SoftEat</span> valora tu autenticidad.
-          Mantén tu perfil actualizado para seguir disfrutando de la mejor experiencia gastronómica.
+          En <span className="font-semibold">SoftEat</span> valoramos tu autenticidad.
+          Mantén un perfil actualizado para seguir disfrutando de una mejor experiencia gastronomica.
         </p>
       </div>
     </div>
