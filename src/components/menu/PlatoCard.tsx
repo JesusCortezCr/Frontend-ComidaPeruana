@@ -14,7 +14,7 @@ const PlatoCard=({dish}:Props)=>{
             <h3 className="text-3xl py-1.5">{dish.nombre}</h3>
             <p className="text-2xl py-1.5">S/{dish.precio}</p>
             <div className="flex flex-row flex-wrap justify-center">
-                <FavoriteButton dishId={dish.id_plato}></FavoriteButton>
+                <FavoriteButton dish={dish}></FavoriteButton>
                 <AddToCartButton dishId={dish.id_plato}></AddToCartButton>
             </div>
         </div>
