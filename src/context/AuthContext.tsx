@@ -3,6 +3,7 @@
 // Archivo: src/context/AuthContext.tsx
 // ============================================
 
+//El Auth Context en React sirve para manejar la autenticación del usuario de forma global en toda la aplicación.
 
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import type { LoginRequest, RegisterRequest, User } from "../types/auth.types";
@@ -23,6 +24,7 @@ interface AuthContextType {
   login: (credentials: LoginRequest) => Promise<{ success: boolean; message?: string }>;
   register: (userData: RegisterRequest) => Promise<{ success: boolean; message?: string }>;
   logout: () => void;
+  updateUser: (userData: Partial<User>)=> void;
 }
 
 /**
@@ -140,6 +142,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setUser(null);
   };
 
+
+  //funcion para actualizar los datos del usuario
+  const updateUser=(userData:Partial<User>)=>{
+    if(user){
+      const updatedUser={...user,...userData};
+      setUser(updatedUser);
+      localStorage.setItem('auth_user',JSON.stringify(updatedUser));
+    }
+  };
+
+
   /**
    * Valor del contexto
    */
@@ -149,7 +162,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     isLoading,
     login,
     register,
-    logout
+    logout,
+    updateUser
   };
 
   // Mostrar loading mientras carga el usuario
@@ -176,3 +190,4 @@ export const useAuth  = (): AuthContextType => {
   
   return context;
 };
+
