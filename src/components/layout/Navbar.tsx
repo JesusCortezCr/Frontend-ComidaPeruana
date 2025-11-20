@@ -34,11 +34,6 @@ const NavBar = () => {
               </Link>
             </li>
             <li>
-              <Link to="/carrito" className="text-[#413636] hover:text-[#E56767] transition">
-                Carrito
-              </Link>
-            </li>
-            <li>
               <Link to="/cuenta-personal" className="text-[#413636] hover:text-[#E56767] transition">
                 Mi Cuenta
               </Link>
@@ -71,9 +66,6 @@ const NavBar = () => {
         {/* Mostrar solo si está autenticado */}
         {isAuthenticated && (
           <>
-            <li className="text-[#413636] font-medium">
-              Hola, {user?.nombre}
-            </li>
             <li>
               <button
                 onClick={handleLogout}

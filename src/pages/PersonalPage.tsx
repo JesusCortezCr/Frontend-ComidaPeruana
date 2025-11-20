@@ -76,51 +76,115 @@ export const PersonalPage = () => {
     }
 
     return (
-        <>
-            <h1 className="text-center">Mi Cuenta</h1>
-            <hr />
-            <h2>!Bienvenido {isAuthenticated && (<><span>{user?.nombre}</span> </>)} </h2>
-            <span>Nombre completo :  {`${user?.nombre} , ${user?.apellido}`} </span>
+        <div className="max-w-3xl mx-auto mt-10 p-6 bg-white shadow-md rounded-xl">
+            <h1 className="text-3xl font-bold text-center mb-2">Mi Cuenta</h1>
+            <p className="text-center text-gray-600 mb-6">
+                ¡Bienvenido <span className="font-semibold">{user?.nombre}</span>!
+            </p>
 
-            <div className="p-2 border-2 w-[850px] m-5">
-                <h3>Editar Informacion personal</h3>
-                {/* Formulario para actualizar informacion personal */}
-                <form onSubmit={enviarActualizacionDatos}>
-                    <label htmlFor="">Nombres: </label>
-                    <input type="text" name="nombre" value={formActualizarData.nombre} onChange={asignarValoresFormulario} className="border-1" />
-                    <label htmlFor="">Apellidos: </label>
-                    <input type="text" name="apellido" value={formActualizarData.apellido} className="border-1" onChange={asignarValoresFormulario} />
-                    <label htmlFor="">Mi correo: </label>
-                    <input type="email" value={user?.email} disabled className="border-1" />
-                    <button type="submit" className="bg-blue-600 hover:bg-red-600">{isLoading ? "Actualizando..." : "Actualizar"}</button>
+            <div className="mb-8">
+                <span className="text-gray-700 text-lg">
+                    Nombre completo:{" "}
+                    <strong>{user?.nombre} {user?.apellido}</strong>
+                </span>
+            </div>
+
+            {/* Mensajes globales */}
+            {mensaje && (
+                <p className="mb-4 p-3 bg-green-100 text-green-700 rounded-lg border border-green-300">
+                    {mensaje}
+                </p>
+            )}
+            {error && (
+                <p className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg border border-red-300">
+                    {error}
+                </p>
+            )}
+
+            {/* Sección de datos personales */}
+            <div className="p-6 border border-gray-200 rounded-lg mb-8 shadow-sm">
+                <h3 className="text-xl font-semibold mb-4">Editar información personal</h3>
+
+                <form onSubmit={enviarActualizacionDatos} className="space-y-4">
+                    <div>
+                        <label className="block text-gray-700 font-medium mb-1">Nombres</label>
+                        <input
+                            type="text"
+                            name="nombre"
+                            value={formActualizarData.nombre}
+                            onChange={asignarValoresFormulario}
+                            className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+                        />
+                    </div>
+
+                    <div>
+                        <label className="block text-gray-700 font-medium mb-1">Apellidos</label>
+                        <input
+                            type="text"
+                            name="apellido"
+                            value={formActualizarData.apellido}
+                            onChange={asignarValoresFormulario}
+                            className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+                        />
+                    </div>
+
+                    <div>
+                        <label className="block text-gray-700 font-medium mb-1">Correo</label>
+                        <input
+                            type="email"
+                            value={user?.email}
+                            disabled
+                            className="w-full px-4 py-2 border rounded-lg bg-gray-100 text-gray-600 cursor-not-allowed"
+                        />
+                    </div>
+
+                    <button
+                        type="submit"
+                        disabled={isLoading}
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition"
+                    >
+                        {isLoading ? "Guardando..." : "Actualizar datos"}
+                    </button>
                 </form>
             </div>
-            <div className="p-2 border-2 w-[850px] m-5">
-                <h3>Editar Contraseña</h3>
-                <form onSubmit={enviarPasswordActualizacionData}>
-                    <label htmlFor="">Contraseña actual:</label>
-                    <input
-                        type="password"
-                        name="passwordActual"  // ✅ Debe tener este name
-                        value={formPasswordData.passwordActual}
-                        onChange={asignarValoresPassword}
-                        className="border-1"
-                        required
-                    />
-                    <label htmlFor="">Escriba su nueva contraseña</label>
-                    <input
-                        type="password"
-                        name="passwordNuevo"  // ✅ Debe tener este name
-                        value={formPasswordData.passwordNuevo}
-                        onChange={asignarValoresPassword}
-                        className="border-1"
-                        required
-                        minLength={6}
-                    />
-                    <button type="submit" disabled={isLoading} className="bg-blue-600 hover:bg-red-600">{isLoading ? "Cambiando..." : "Cambiar contraseña"}</button>
+
+            {/* Sección de cambiar contraseña */}
+            <div className="p-6 border border-gray-200 rounded-lg shadow-sm">
+                <h3 className="text-xl font-semibold mb-4">Cambiar contraseña</h3>
+
+                <form onSubmit={enviarPasswordActualizacionData} className="space-y-4">
+                    <div>
+                        <label className="block text-gray-700 font-medium mb-1">Contraseña actual</label>
+                        <input
+                            type="password"
+                            name="passwordActual"
+                            value={formPasswordData.passwordActual}
+                            onChange={asignarValoresPassword}
+                            className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+                        />
+                    </div>
+
+                    <div>
+                        <label className="block text-gray-700 font-medium mb-1">Nueva contraseña</label>
+                        <input
+                            type="password"
+                            name="passwordNuevo"
+                            value={formPasswordData.passwordNuevo}
+                            onChange={asignarValoresPassword}
+                            className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+                        />
+                    </div>
+
+                    <button
+                        type="submit"
+                        disabled={isLoading}
+                        className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg transition"
+                    >
+                        {isLoading ? "Guardando..." : "Actualizar contraseña"}
+                    </button>
                 </form>
             </div>
-        </>
+        </div>
     )
 }
 

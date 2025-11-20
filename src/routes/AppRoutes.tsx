@@ -41,16 +41,8 @@ const AppRoutes = () => {
                         }
                     />
                     <Route
-                        path="perfil"
-                        element={
-                            <ProtectedRoute>
-                                <Perfil />
-                            </ProtectedRoute>
-                        }
-                    />
-                <Route 
-                path="cuenta-personal"
-                element={ <ProtectedRoute><PersonalPage/></ProtectedRoute> } ></Route>
+                        path="cuenta-personal"
+                        element={<ProtectedRoute><PersonalPage /></ProtectedRoute>}></Route>
                 </Route>
             </Routes>
         </BrowserRouter>

@@ -1,5 +1,4 @@
 import type { Dish } from "../../types/dish";
-import AddToCartButton from "../common/AddToCartButton";
 import FavoriteButton from "../common/FavoriteButton";
 
 type Props={
@@ -15,7 +14,6 @@ const PlatoCard=({dish}:Props)=>{
             <p className="text-2xl py-1.5">S/{dish.precio}</p>
             <div className="flex flex-row flex-wrap justify-center">
                 <FavoriteButton dish={dish}></FavoriteButton>
-                <AddToCartButton dishId={dish.id_plato}></AddToCartButton>
             </div>
         </div>
         </>
