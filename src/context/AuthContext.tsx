@@ -181,6 +181,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 /**
  * Hook personalizado para usar el contexto
  */
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth  = (): AuthContextType => {
   const context = useContext(AuthContext);
   

@@ -22,23 +22,31 @@ const AppRoutes = () => {
                     <Route path="inicio-sesion" element={<InicioSesion />} />
                     <Route path="menu" element={<Menu />} />
                     <Route path="nosotros" element={<Nosotros />} />
-                    
+
                     {/* Rutas protegidas (requieren login) */}
-                    <Route 
-                        path="carrito" 
+                    <Route
+                        path="carrito"
                         element={
                             <ProtectedRoute>
                                 <Carrito />
                             </ProtectedRoute>
-                        } 
+                        }
                     />
-                    <Route 
-                        path="favoritos" 
+                    <Route
+                        path="favoritos"
                         element={
                             <ProtectedRoute>
                                 <Favoritos />
                             </ProtectedRoute>
-                        } 
+                        }
+                    />
+                    <Route
+                        path="perfil"
+                        element={
+                            <ProtectedRoute>
+                                <Perfil />
+                            </ProtectedRoute>
+                        }
                     />
                 <Route 
                 path="cuenta-personal"

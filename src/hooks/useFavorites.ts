@@ -1,18 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import type { Dish } from "../types/dish";
 
 const useFavorites = () => {
-  const [favorites, setFavorites] = useState<number[]>([]);
+  const [favorites, setFavorites] = useState<Dish[]>([]);
 
-  const isFavorite = (dishId: number) => favorites.includes(dishId);
+  useEffect(() => {
+    const favs: Dish[] = JSON.parse(localStorage.getItem("favoritos") || "[]");
+    setFavorites(favs);
+  }, []);
 
-  const toogleFavorite = (dishId: number) => {
-    setFavorites((prev) =>
-      prev.includes(dishId)
-        ? prev.filter((id) => id !== dishId)
-        : [...prev, dishId]
-    );
+  const isFavorite = (dishId: number) => {
+    return favorites.some((p) => p.id_plato === dishId);
   };
 
-  return { favorites, isFavorite, toogleFavorite };
+  const toggleFavorite = (dish: Dish) => {
+    let nuevosFavoritos: Dish[];
+    if (isFavorite(dish.id_plato)) {
+      nuevosFavoritos = favorites.filter((p) => p.id_plato !== dish.id_plato);
+    } else {
+      nuevosFavoritos = [...favorites, dish];
+    }
+    setFavorites(nuevosFavoritos);
+    localStorage.setItem("favoritos", JSON.stringify(nuevosFavoritos));
+  };
+
+  return { favorites, isFavorite, toggleFavorite };
 };
+
 export default useFavorites;
