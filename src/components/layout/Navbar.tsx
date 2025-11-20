@@ -39,11 +39,10 @@ const NavBar = () => {
               </Link>
             </li>
             <li>
-              <Link to="/perfil" className="text-[#413636] hover:text-[#E56767] transition">
-                Mi perfil
+              <Link to="/cuenta-personal" className="text-[#413636] hover:text-[#E56767] transition">
+                Mi Cuenta
               </Link>
             </li>
-
           </>
         )}
 

@@ -8,7 +8,7 @@ import Carrito from "../pages/Carrito";
 import Nosotros from "../pages/Nosotros";
 import Favoritos from "../pages/Favoritos";
 import { ProtectedRoute } from "../components/ProtectedRoute";
-import Perfil from "../pages/Perfil";
+import PersonalPage from "../pages/PersonalPage";
 
 const AppRoutes = () => {
     return (
@@ -48,6 +48,9 @@ const AppRoutes = () => {
                             </ProtectedRoute>
                         }
                     />
+                <Route 
+                path="cuenta-personal"
+                element={ <ProtectedRoute><PersonalPage/></ProtectedRoute> } ></Route>
                 </Route>
             </Routes>
         </BrowserRouter>
