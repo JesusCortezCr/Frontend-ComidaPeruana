@@ -9,6 +9,8 @@ import Nosotros from "../pages/Nosotros";
 import Favoritos from "../pages/Favoritos";
 import { ProtectedRoute } from "../components/ProtectedRoute";
 import PersonalPage from "../pages/PersonalPage";
+import CrearPlatoPage from "../pages/admin/CrearPlatoPage";
+import AdminPlatosPage from "../pages/admin/AdminPlatosPage";
 
 const AppRoutes = () => {
     return (
@@ -27,7 +29,7 @@ const AppRoutes = () => {
                     <Route
                         path="carrito"
                         element={
-                            <ProtectedRoute>
+                            <ProtectedRoute requiredRole="CLIENTE">
                                 <Carrito />
                             </ProtectedRoute>
                         }
@@ -35,14 +37,45 @@ const AppRoutes = () => {
                     <Route
                         path="favoritos"
                         element={
-                            <ProtectedRoute>
+                            <ProtectedRoute requiredRole="CLIENTE">
                                 <Favoritos />
                             </ProtectedRoute>
                         }
                     />
                     <Route
                         path="cuenta-personal"
-                        element={<ProtectedRoute><PersonalPage /></ProtectedRoute>}></Route>
+                        element={
+                            <ProtectedRoute>
+                                <PersonalPage />
+                            </ProtectedRoute>
+                        }
+                    />
+
+                    {/* Rutas de administración */}
+                    <Route
+                        path="admin/platos"
+                        element={
+                            <ProtectedRoute requiredRole="ADMINISTRADOR">
+                                <AdminPlatosPage />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="admin/platos/nuevo"
+                        element={
+                            <ProtectedRoute requiredRole="ADMINISTRADOR">
+                                <CrearPlatoPage />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="admin/platos/editar/:id"
+                        element={
+                            <ProtectedRoute requiredRole="ADMINISTRADOR">
+                                <div>Página de editar plato (por implementar)</div>
+                            </ProtectedRoute>
+                        }
+                    />
                 </Route>
             </Routes>
         </BrowserRouter>
