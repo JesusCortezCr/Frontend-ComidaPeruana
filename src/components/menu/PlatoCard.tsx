@@ -1,23 +1,182 @@
-import type { Dish } from "../../types/dish";
-import FavoriteButton from "../common/FavoriteButton";
+import React from 'react';
+import { useNavigate } from 'react-router-dom'; // 👈 Agregar este import
+import type { Plato } from '../../types/plato.type';
+import { useAuth } from '../../context/AuthContext';
 
-type Props={
-    dish:Dish;
-}
+type Props = {
+    plato: Plato;
+    onToggleFavorito?: (idPlato: number) => void;
+};
 
-const PlatoCard=({dish}:Props)=>{
-    return(
-        <>
-        <div className="w-[375px] rounded-2xl p-2 gap-2 my-2 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] transition-transform duration-300 hover:-translate-y-2">
-            <img src={dish.imagen_url} alt={dish.nombre} className="w-full h-[200px] object-cover rounded-lg" />
-            <h3 className="text-3xl py-1.5">{dish.nombre}</h3>
-            <p className="text-2xl py-1.5">S/{dish.precio}</p>
-            <div className="flex flex-row flex-wrap justify-center">
-                <FavoriteButton dish={dish}></FavoriteButton>
+const PlatoCard = ({ plato, onToggleFavorito }: Props) => {
+    const { isAuthenticated, user } = useAuth();
+    const navigate = useNavigate(); // 👈 Agregar navigate
+
+    const getRangoPrecioLabel = (rango: string) => {
+        switch (rango) {
+            case "ECONOMICO":
+                return "Económico";
+            case "MEDIO":
+                return "Medio";
+            case "PREMIUM":
+                return "Premium";
+            default:
+                return rango;
+        }
+    };
+
+    const getRangoPrecioColor = (rango: string) => {
+        switch (rango) {
+            case "ECONOMICO":
+                return "bg-green-100 text-green-800";
+            case "MEDIO":
+                return "bg-blue-100 text-blue-800";
+            case "PREMIUM":
+                return "bg-purple-100 text-purple-800";
+            default:
+                return "bg-gray-100 text-gray-800";
+        }
+    };
+
+    // 👇 NUEVA FUNCIÓN para manejar el clic en favoritos
+    const handleFavoritoClick = () => {
+        if (!isAuthenticated) {
+            alert('Por favor, inicia sesión para agregar a favoritos');
+            navigate('/inicio-sesion');
+            return;
+        }
+        
+        if (onToggleFavorito) {
+            onToggleFavorito(plato.idPlato);
+        }
+    };
+
+    return (
+        <div className="w-[375px] rounded-2xl p-2 gap-2 my-2 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] transition-transform duration-300 hover:-translate-y-2 bg-white">
+            {/* Imagen con badges */}
+            <div className="relative">
+                <img
+                    src={plato.imagenUrl || "/placeholder-food.jpg"}
+                    alt={plato.nombre}
+                    className="w-full h-[200px] object-cover rounded-lg"
+                />
+
+                {/* Badge destacado */}
+                {plato.esDestacado && (
+                    <span className="absolute top-2 left-2 bg-yellow-400 text-yellow-900 text-xs font-semibold px-2 py-1 rounded-full shadow">
+                        ⭐ Destacado
+                    </span>
+                )}
+
+                {/* Badge rango de precio */}
+                <span
+                    className={`absolute bottom-2 right-2 text-xs font-semibold px-2 py-1 rounded-full shadow ${getRangoPrecioColor(
+                        plato.rangoPrecio
+                    )}`}
+                >
+                    {getRangoPrecioLabel(plato.rangoPrecio)}
+                </span>
+            </div>
+
+            {/* Información del plato */}
+            <h3 className="text-3xl py-1.5 font-semibold text-gray-800">
+                {plato.nombre}
+            </h3>
+
+            {/* Categoría y Especialidad */}
+            <div className="flex gap-2 mb-2 flex-wrap">
+                <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full">
+                    {plato.nombreCategoria}
+                </span>
+                <span className="text-xs bg-[#E56767]/10 text-[#B23A3A] px-2 py-1 rounded-full">
+                    {plato.nombreEspecialidad}
+                </span>
+            </div>
+
+            {/* Precio */}
+            <p className="text-2xl py-1.5 font-bold text-[#B23A3A]">
+                S/ {plato.precio.toFixed(2)}
+            </p>
+
+            {/* Descripción (opcional) */}
+            {plato.descripcion && (
+                <p className="text-sm text-gray-600 line-clamp-2 mb-2">
+                    {plato.descripcion}
+                </p>
+            )}
+
+            {/* Disponibilidad y tiempo */}
+            <div className="flex justify-between items-center mb-2 text-sm">
+                {plato.disponible ? (
+                    <span className="text-green-600 font-medium">✓ Disponible</span>
+                ) : (
+                    <span className="text-red-600 font-medium">✗ No disponible</span>
+                )}
+
+                {plato.tiempoPreparacion && (
+                    <span className="text-gray-500">⏱️ {plato.tiempoPreparacion} min</span>
+                )}
+            </div>
+
+            {/* Botones de acción */}
+            <div className="flex flex-row flex-wrap justify-center gap-2">
+                {/* Botón de favorito - SOLO para clientes AUTENTICADOS */}
+                {isAuthenticated && user?.rol === 'CLIENTE' && onToggleFavorito && (
+                    <button
+                        className="w-28 p-1.5 rounded-2xl border-1 bg-white hover:bg-[#E56767] transition"
+                        onClick={handleFavoritoClick}
+                        title={plato.esFavorito ? "Quitar de favoritos" : "Agregar a favoritos"}
+                    >
+                        {plato.esFavorito ? "❤️" : "🤍"}
+                    </button>
+                )}
+
+                {/* Botón de favorito para usuarios NO autenticados */}
+                {!isAuthenticated && (
+                    <button
+                        className="w-28 p-1.5 rounded-2xl border-1 bg-white hover:bg-[#E56767] transition"
+                        onClick={handleFavoritoClick} 
+                        title="Inicia sesión para agregar a favoritos"
+                    >
+                        🤍 {/* Siempre muestra corazón vacío */}
+                    </button>
+                )}
+
+                {/* Botón agregar al carrito - SOLO para clientes AUTENTICADOS */}
+                {isAuthenticated && user?.rol === 'CLIENTE' && (
+                    <button
+                        disabled={!plato.disponible}
+                        className={`flex-1 p-1.5 rounded-2xl transition font-medium ${plato.disponible
+                                ? "bg-[#B23A3A] hover:bg-[#9f3535] text-white"
+                                : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                            }`}
+                    >
+                        {plato.disponible ? "🛒 Agregar" : "No disponible"}
+                    </button>
+                )}
+
+                {/* Botón agregar al carrito para usuarios NO autenticados */}
+                {!isAuthenticated && (
+                    <button
+                        onClick={() => {
+                            alert('Por favor, inicia sesión para agregar al carrito');
+                            navigate('/inicio-sesion');
+                        }}
+                        className={`flex-1 p-1.5 rounded-2xl transition font-medium bg-[#B23A3A] hover:bg-[#9f3535] text-white`}
+                    >
+                        🛒 Agregar
+                    </button>
+                )}
+
+                {/* Mensaje para admin */}
+                {user?.rol === 'ADMINISTRADOR' && (
+                    <div className="text-center text-sm text-gray-500 py-2 w-full">
+                        Modo vista previa - Ve al Panel Admin para gestionar
+                    </div>
+                )}
             </div>
         </div>
-        </>
-    )
+    );
+};
 
-}
 export default PlatoCard;
