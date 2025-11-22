@@ -1,5 +1,5 @@
-import { Link} from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 const Navbar = () => {
   const { isAuthenticated, user, logout } = useAuth();
@@ -42,22 +42,14 @@ const Navbar = () => {
                   </Link>
                 )}
 
-                {/* OPCIONES PARA CLIENTE */}
+                {/* OPCIONES PARA CLIENTE - SOLO FAVORITOS */}
                 {user?.rol === 'CLIENTE' && (
-                  <>
-                    <Link 
-                      to="/favoritos" 
-                      className="text-gray-700 hover:text-[#E56767] transition font-medium text-sm flex items-center gap-1"
-                    >
-                      ❤️ Favoritos
-                    </Link>
-                    <Link 
-                      to="/carrito" 
-                      className="text-gray-700 hover:text-[#E56767] transition font-medium text-sm flex items-center gap-1"
-                    >
-                      🛒 Carrito
-                    </Link>
-                  </>
+                  <Link 
+                    to="/favoritos" 
+                    className="text-gray-700 hover:text-[#E56767] transition font-medium text-sm flex items-center gap-1"
+                  >
+                    ❤️ Favoritos
+                  </Link>
                 )}
 
                 {/* Opciones comunes para ambos */}

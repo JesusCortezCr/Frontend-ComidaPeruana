@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // 👈 Agregar este import
+import { useNavigate } from 'react-router-dom';
 import type { Plato } from '../../types/plato.type';
 import { useAuth } from '../../context/AuthContext';
 
@@ -10,7 +10,7 @@ type Props = {
 
 const PlatoCard = ({ plato, onToggleFavorito }: Props) => {
     const { isAuthenticated, user } = useAuth();
-    const navigate = useNavigate(); // 👈 Agregar navigate
+    const navigate = useNavigate();
 
     const getRangoPrecioLabel = (rango: string) => {
         switch (rango) {
@@ -38,7 +38,6 @@ const PlatoCard = ({ plato, onToggleFavorito }: Props) => {
         }
     };
 
-    // 👇 NUEVA FUNCIÓN para manejar el clic en favoritos
     const handleFavoritoClick = () => {
         if (!isAuthenticated) {
             alert('Por favor, inicia sesión para agregar a favoritos');
@@ -118,53 +117,27 @@ const PlatoCard = ({ plato, onToggleFavorito }: Props) => {
                 )}
             </div>
 
-            {/* Botones de acción */}
+            {/* Botones de acción - SOLO FAVORITOS */}
             <div className="flex flex-row flex-wrap justify-center gap-2">
-                {/* Botón de favorito - SOLO para clientes AUTENTICADOS */}
-                {isAuthenticated && user?.rol === 'CLIENTE' && onToggleFavorito && (
+                {/* Botón de favorito para TODOS los usuarios autenticados */}
+                {isAuthenticated && onToggleFavorito && (
                     <button
-                        className="w-28 p-1.5 rounded-2xl border-1 bg-white hover:bg-[#E56767] transition"
+                        className="w-full p-1.5 rounded-2xl border-1 bg-white hover:bg-[#E56767] transition"
                         onClick={handleFavoritoClick}
                         title={plato.esFavorito ? "Quitar de favoritos" : "Agregar a favoritos"}
                     >
-                        {plato.esFavorito ? "❤️" : "🤍"}
+                        {plato.esFavorito ? "❤️ Quitar de favoritos" : "🤍 Agregar a favoritos"}
                     </button>
                 )}
 
                 {/* Botón de favorito para usuarios NO autenticados */}
                 {!isAuthenticated && (
                     <button
-                        className="w-28 p-1.5 rounded-2xl border-1 bg-white hover:bg-[#E56767] transition"
-                        onClick={handleFavoritoClick} 
+                        className="w-full p-1.5 rounded-2xl border-1 bg-white hover:bg-[#E56767] transition"
+                        onClick={handleFavoritoClick}
                         title="Inicia sesión para agregar a favoritos"
                     >
-                        🤍 {/* Siempre muestra corazón vacío */}
-                    </button>
-                )}
-
-                {/* Botón agregar al carrito - SOLO para clientes AUTENTICADOS */}
-                {isAuthenticated && user?.rol === 'CLIENTE' && (
-                    <button
-                        disabled={!plato.disponible}
-                        className={`flex-1 p-1.5 rounded-2xl transition font-medium ${plato.disponible
-                                ? "bg-[#B23A3A] hover:bg-[#9f3535] text-white"
-                                : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                            }`}
-                    >
-                        {plato.disponible ? "🛒 Agregar" : "No disponible"}
-                    </button>
-                )}
-
-                {/* Botón agregar al carrito para usuarios NO autenticados */}
-                {!isAuthenticated && (
-                    <button
-                        onClick={() => {
-                            alert('Por favor, inicia sesión para agregar al carrito');
-                            navigate('/inicio-sesion');
-                        }}
-                        className={`flex-1 p-1.5 rounded-2xl transition font-medium bg-[#B23A3A] hover:bg-[#9f3535] text-white`}
-                    >
-                        🛒 Agregar
+                        🤍 Inicia sesión para favoritos
                     </button>
                 )}
 

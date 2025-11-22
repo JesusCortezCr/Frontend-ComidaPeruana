@@ -1,5 +1,4 @@
 // src/pages/Menu.tsx (ACTUALIZAR)
-
 import { useEffect, useState } from "react";
 import PlatosLista from "../components/menu/PlatosLista";
 import {
@@ -88,8 +87,38 @@ const Menu: React.FC = () => {
   };
 
   const handleToggleFavorito = async (idPlato: number) => {
-    // TODO: Implementar lógica de favoritos
-    console.log("Toggle favorito:", idPlato);
+    try {
+      // Encontrar el plato en la lista
+      const platoIndex = platos.findIndex(p => p.idPlato === idPlato);
+      if (platoIndex === -1) return;
+
+      const plato = platos[platoIndex];
+      const nuevosPlatos = [...platos];
+
+      // Toggle del estado de favorito
+      nuevosPlatos[platoIndex] = {
+        ...plato,
+        esFavorito: !plato.esFavorito
+      };
+
+      setPlatos(nuevosPlatos);
+
+      // Guardar en localStorage (temporal - luego conectarás con backend)
+      if (!plato.esFavorito) {
+        // Agregar a favoritos
+        const favoritosActuales: Plato[] = JSON.parse(localStorage.getItem("favoritos") || "[]");
+        const nuevosFavoritos = [...favoritosActuales, { ...plato, esFavorito: true }];
+        localStorage.setItem("favoritos", JSON.stringify(nuevosFavoritos));
+      } else {
+        // Quitar de favoritos
+        const favoritosActuales: Plato[] = JSON.parse(localStorage.getItem("favoritos") || "[]");
+        const nuevosFavoritos = favoritosActuales.filter(p => p.idPlato !== idPlato);
+        localStorage.setItem("favoritos", JSON.stringify(nuevosFavoritos));
+      }
+
+    } catch (error) {
+      console.error("Error al toggle favorito:", error);
+    }
   };
 
   return (
