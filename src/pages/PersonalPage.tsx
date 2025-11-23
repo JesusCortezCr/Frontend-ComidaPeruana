@@ -5,7 +5,7 @@ import { api } from "../services/authService";
 
 export const PersonalPage = () => {
     const [error, setError] = useState<string>("");
-    const { user, isAuthenticated, updateUser } = useAuth();
+    const { user, updateUser } = useAuth(); // Removido isAuthenticated ya que no se usa
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [mensaje, setMensaje] = useState<string>("");
     const [formActualizarData, setFormActualizarData] = useState({
@@ -35,7 +35,8 @@ export const PersonalPage = () => {
         setError("");
         setIsLoading(true);
         try {
-            const { data } = await api.put(`/usuarios/${user?.idUsuario}`, formActualizarData);
+            // Removida la variable data ya que no se usa
+            await api.put(`/usuarios/${user?.idUsuario}`, formActualizarData);
             //actualizar el contexto con los nuevos datos
             updateUser({
                 nombre: formActualizarData.nombre,
@@ -59,7 +60,8 @@ export const PersonalPage = () => {
         console.log("Datos a enviar:", formPasswordData);
         console.log("URL:", `/usuarios/${user?.idUsuario}/cambiar-contrasenia`);
         try {
-            const { data } = await api.put(`/usuarios/${user?.idUsuario}/cambiar-contrasenia`, formPasswordData);
+            // Removida la variable data ya que no se usa
+            await api.put(`/usuarios/${user?.idUsuario}/cambiar-contrasenia`, formPasswordData);
             setMensaje("Contraseña actualizada correctamente");
             setFormPasswordData({
                 passwordActual: "",
