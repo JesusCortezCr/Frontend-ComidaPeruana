@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'; // Removido React
 import type { Plato } from '../types/plato.type';
 import { useAuth } from '../context/AuthContext';
 import PlatosLista from '../components/menu/PlatosLista';
