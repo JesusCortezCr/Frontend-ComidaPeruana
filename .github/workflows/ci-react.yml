@@ -1,0 +1,33 @@
+name: CI-React
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+jobs:
+    build:
+        name: Buil_Test_React
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v4
+            
+            - name: use Node.js 20
+              uses: actions/setup-node@v4
+              with:
+                node-version: '20'
+                cache: 'npm'
+            
+            - name: Install dependencies
+              run: npm ci
+            - name: Lint
+              run : npm run lint
+            - name: Run unit tests
+              run: npm test -- --watchAll=false
+            - name: Build production bundle
+              run: npm run build
+            - name: Upload build artifact (optional)
+              uses: actions/upload-artifact@v4
+              with:
+                name: react-build
+                path: build
