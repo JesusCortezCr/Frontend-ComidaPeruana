@@ -40,7 +40,7 @@ const CrearPlatoPage: React.FC = () => {
       ]);
       setCategorias(categoriasData);
       setEspecialidades(especialidadesData);
-    } catch (err) {
+    } catch {
       setError('Error al cargar categorías y especialidades');
     }
   };
@@ -77,46 +77,46 @@ const CrearPlatoPage: React.FC = () => {
       
       // Crear vista previa
       const reader = new FileReader();
-      reader.onload = (e) => {
-        setVistaPreviaImagen(e.target?.result as string);
+      reader.onload = (readerEvent) => {
+        setVistaPreviaImagen(readerEvent.target?.result as string);
       };
       reader.readAsDataURL(file);
     }
   };
 
-const procesarSubidaImagen = async (file: File): Promise<string> => {
-  try {
-    console.log('📤 Subiendo archivo:', {
-      nombre: file.name,
-      tamaño: file.size,
-      tipo: file.type
-    });
-
-    const fileUrl = await subirImagen(file);
-    console.log('✅ URL obtenida del servidor:', fileUrl);
-    
-    // Verificar que la URL es accesible
+  const procesarSubidaImagen = async (file: File): Promise<string> => {
     try {
-      const response = await fetch(fileUrl);
-      console.log('🔍 Verificación de URL:', {
-        url: fileUrl,
-        status: response.status,
-        ok: response.ok
+      console.log('📤 Subiendo archivo:', {
+        nombre: file.name,
+        tamaño: file.size,
+        tipo: file.type
       });
-    } catch (fetchError) {
-      console.error('❌ La URL no es accesible:', fileUrl, fetchError);
+
+      const fileUrl = await subirImagen(file);
+      console.log('✅ URL obtenida del servidor:', fileUrl);
+      
+      // Verificar que la URL es accesible
+      try {
+        const response = await fetch(fileUrl);
+        console.log('🔍 Verificación de URL:', {
+          url: fileUrl,
+          status: response.status,
+          ok: response.ok
+        });
+      } catch (fetchError) {
+        console.error('❌ La URL no es accesible:', fileUrl, fetchError);
+      }
+      
+      return fileUrl;
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error 
+        ? error.message 
+        : 'Error desconocido al subir imagen';
+      
+      console.error('❌ Error completo al subir imagen:', error);
+      throw new Error('Error al subir la imagen: ' + errorMessage);
     }
-    
-    return fileUrl;
-  } catch (error: any) {
-    console.error('❌ Error completo al subir imagen:', {
-      mensaje: error.message,
-      respuesta: error.response?.data,
-      status: error.response?.status
-    });
-    throw new Error('Error al subir la imagen: ' + (error.response?.data || error.message));
-  }
-};
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -158,8 +158,11 @@ const procesarSubidaImagen = async (file: File): Promise<string> => {
       await crearPlato(datosEnvio);
       alert('Plato creado exitosamente');
       navigate('/admin/platos');
-    } catch (err: any) {
-      setError(err.message || 'Error al crear el plato');
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error 
+        ? err.message 
+        : 'Error al crear el plato';
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }
