@@ -1,5 +1,5 @@
-// src/pages/Menu.tsx (ACTUALIZAR)
-import { useEffect, useState } from "react";
+// src/pages/Menu.tsx (CORREGIDO)
+import { useEffect, useState, useCallback } from "react";
 import PlatosLista from "../components/menu/PlatosLista";
 import {
   obtenerPlatosConFiltros,
@@ -29,17 +29,8 @@ const Menu: React.FC = () => {
     rangoPrecio: "",
   });
 
-  // Cargar categorías y especialidades al montar
-  useEffect(() => {
-    cargarDatosIniciales();
-  }, []);
-
-  // Cargar platos cuando cambien los filtros
-  useEffect(() => {
-    cargarPlatos();
-  }, [filtros]);
-
-  const cargarDatosIniciales = async () => {
+  // Memoizar las funciones con useCallback
+  const cargarDatosIniciales = useCallback(async () => {
     try {
       const [categoriasData, especialidadesData] = await Promise.all([
         // Usar servicios públicos si no está autenticado
@@ -52,9 +43,9 @@ const Menu: React.FC = () => {
       console.error("Error al cargar datos iniciales:", err);
       setError("Error al cargar las opciones de filtro");
     }
-  };
+  }, [isAuthenticated]);
 
-  const cargarPlatos = async () => {
+  const cargarPlatos = useCallback(async () => {
     setIsLoading(true);
     setError("");
     try {
@@ -69,9 +60,20 @@ const Menu: React.FC = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [filtros, isAuthenticated]);
 
-  const handleFiltroChange = (campo: keyof FiltrosPlatos, valor: any) => {
+  // Cargar categorías y especialidades al montar
+  useEffect(() => {
+    cargarDatosIniciales();
+  }, [cargarDatosIniciales]);
+
+  // Cargar platos cuando cambien los filtros
+  useEffect(() => {
+    cargarPlatos();
+  }, [cargarPlatos]);
+
+  // Corregir el tipo any - usar tipos específicos
+  const handleFiltroChange = (campo: keyof FiltrosPlatos, valor: string | number | null) => {
     setFiltros((prev) => ({
       ...prev,
       [campo]: valor,
