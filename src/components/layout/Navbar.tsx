@@ -15,6 +15,13 @@ const Navbar = () => {
           {/* Navegación izquierda */}
           <div className="flex items-center gap-8">
             <Link 
+              to="/home" 
+              className="text-gray-700 hover:text-[#E56767] transition font-medium text-sm"
+            >
+              Home
+            </Link>
+
+            <Link 
               to="/menu" 
               className="text-gray-700 hover:text-[#E56767] transition font-medium text-sm"
             >
