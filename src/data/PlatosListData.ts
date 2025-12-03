@@ -7,7 +7,7 @@ export const PlatosListData = [
     id_tipo_plato: 1, // Entrada
     id_especialidad: 2, // Mariscos
     id_rango_precio: 2, // Medio
-    imagen_url:
+    imagenUrl:
       "https://trexperienceperu.com/sites/default/files/2024-05/ceviche.jpg",
   },
   {
@@ -19,7 +19,7 @@ export const PlatosListData = [
     id_tipo_plato: 2, // Plato principal
     id_especialidad: 1, // Carnes
     id_rango_precio: 3, // Alto
-    imagen_url:
+    imagenUrl:
       "https://www.gourmet.cl/wp-content/uploads/2016/09/Lomo-saltado.png",
   },
   {
@@ -30,7 +30,7 @@ export const PlatosListData = [
     id_tipo_plato: 2,
     id_especialidad: 1, // Aves
     id_rango_precio: 2,
-    imagen_url:
+    imagenUrl:
       "https://okdiario.com/img/2018/10/10/receta-de-aji-de-gallina-655x368.jpg",
   },
   {
@@ -42,7 +42,7 @@ export const PlatosListData = [
     id_tipo_plato: 2,
     id_especialidad: 2,
     id_rango_precio: 3,
-    imagen_url:
+    imagenUrl:
       "https://es.cravingsjournal.com/wp-content/uploads/2024/03/arroz-con-mariscos-4.jpg",
   },
   {
@@ -53,7 +53,7 @@ export const PlatosListData = [
     id_tipo_plato: 1,
     id_especialidad: 1,
     id_rango_precio: 1,
-    imagen_url:
+    imagenUrl:
       "https://cdn0.recetasgratis.net/es/posts/8/6/2/causa_limena_31268_orig.jpg",
   },
   {
@@ -65,7 +65,7 @@ export const PlatosListData = [
     id_tipo_plato: 1,
     id_especialidad: 3,
     id_rango_precio: 1,
-    imagen_url:
+    imagenUrl:
       "https://comedera.com/wp-content/uploads/sites/9/2022/03/Anticucho-shutterstock_185287433.jpg",
   },
   {
@@ -77,7 +77,7 @@ export const PlatosListData = [
     id_tipo_plato: 2,
     id_especialidad: 3,
     id_rango_precio: 4,
-    imagen_url:
+    imagenUrl:
       "https://www.comida-peruana.com/base/stock/Recipe/pollo-a-la-brasa/pollo-a-la-brasa_web.jpg.webp",
   },
   {
@@ -88,7 +88,7 @@ export const PlatosListData = [
     id_tipo_plato: 1,
     id_especialidad: 1, // Vegetarianos
     id_rango_precio: 1,
-    imagen_url:
+    imagenUrl:
       "https://buenazo.cronosmedia.glr.pe/original/2020/09/25/5f6eaf8e2810e95b5c5da50c.jpg",
   },
   {
@@ -99,7 +99,7 @@ export const PlatosListData = [
     id_tipo_plato: 2,
     id_especialidad: 3,
     id_rango_precio: 3,
-    imagen_url: "https://i.ytimg.com/vi/LPCfjRDlWOE/maxresdefault.jpg",
+    imagenUrl: "https://i.ytimg.com/vi/LPCfjRDlWOE/maxresdefault.jpg",
   },
   {
     id_plato: 10,
@@ -109,7 +109,7 @@ export const PlatosListData = [
     id_tipo_plato: 3, // Postre
     id_especialidad: 5, // Dulces
     id_rango_precio: 1,
-    imagen_url:
+    imagenUrl:
       "https://images.aws.nestle.recipes/original/d4fb8c35f04a5ac1c4737b986d60c079_suspiro_1200x600.png",
   },
 ];

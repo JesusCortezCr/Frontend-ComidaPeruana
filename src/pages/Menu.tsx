@@ -132,7 +132,7 @@ const Menu: React.FC = () => {
       {/* Solo mostrar este subtítulo para clientes */}
       {user?.rol === 'CLIENTE' && (
         <h2 className="text-center text-[30px] text-[#2C2F24] my-2.5 opacity-0 translate-y-5 animate-fade-in delay-100">
-          Elige el plato que desees comer
+          Elige el plato de su preferecnia y agrégalo a tus favoritos
         </h2>
       )}
 

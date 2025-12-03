@@ -6,7 +6,7 @@ export interface Dish {
   nombre: string;
   descripcion: string;
   precio: number;
-  imagen_url: string;
+  imagenUrl: string;
   disponible: boolean;
   es_destacado: boolean;
   tiempo_preparacion: number;
@@ -62,7 +62,7 @@ export const convertirPlatoADish = (plato: Plato): Dish => ({
   nombre: plato.nombre,
   descripcion: plato.descripcion,
   precio: plato.precio,
-  imagen_url: plato.imagenUrl,
+  imagenUrl: plato.imagenUrl,
   disponible: plato.disponible,
   es_destacado: plato.esDestacado,
   tiempo_preparacion: plato.tiempoPreparacion,

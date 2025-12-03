@@ -9,7 +9,7 @@ const Carrito = () => {
       nombre: plato.nombre,
       precio: plato.precio,
       cantidad: 5, 
-      imagen: plato.imagen_url, 
+      imagen: plato.imagenUrl, 
     }))
   );
 

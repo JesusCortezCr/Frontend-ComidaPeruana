@@ -5,43 +5,46 @@ import { api } from "../services/authService";
 
 export const PersonalPage = () => {
     const [error, setError] = useState<string>("");
-    const { user, updateUser } = useAuth(); // Removido isAuthenticated ya que no se usa
+    const { user, updateUser } = useAuth();
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [mensaje, setMensaje] = useState<string>("");
+
     const [formActualizarData, setFormActualizarData] = useState({
         nombre: user?.nombre || "",
         apellido: user?.apellido || ""
-    })
+    });
+
     const [formPasswordData, setFormPasswordData] = useState({
         passwordActual: "",
         passwordNuevo: ""
-    })
+    });
 
     const asignarValoresFormulario = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormActualizarData({
             ...formActualizarData,
             [e.target.name]: e.target.value
         });
-    }
+    };
+
     const asignarValoresPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormPasswordData({
             ...formPasswordData,
             [e.target.name]: e.target.value
-        })
-    }
+        });
+    };
 
     async function enviarActualizacionDatos(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
         setError("");
         setIsLoading(true);
         try {
-            // Removida la variable data ya que no se usa
             await api.put(`/usuarios/${user?.idUsuario}`, formActualizarData);
-            //actualizar el contexto con los nuevos datos
+
             updateUser({
                 nombre: formActualizarData.nombre,
                 apellido: formActualizarData.apellido
             });
+
             setMensaje("Datos actualizados correctamente");
         } catch (error) {
             if (axios.isAxiosError(error)) {
@@ -57,20 +60,14 @@ export const PersonalPage = () => {
         setError("");
         setMensaje("");
         setIsLoading(true);
-        console.log("Datos a enviar:", formPasswordData);
-        console.log("URL:", `/usuarios/${user?.idUsuario}/cambiar-contrasenia`);
+
         try {
-            // Removida la variable data ya que no se usa
             await api.put(`/usuarios/${user?.idUsuario}/cambiar-contrasenia`, formPasswordData);
             setMensaje("Contraseña actualizada correctamente");
-            setFormPasswordData({
-                passwordActual: "",
-                passwordNuevo: ""
-            })
+            setFormPasswordData({ passwordActual: "", passwordNuevo: "" });
         } catch (error) {
             if (axios.isAxiosError(error)) {
-                console.error("Error completo:", error.response);
-                setError(error.response?.data?.message || error.response?.data || "Error al cambiar contraseña");
+                setError(error.response?.data?.message || "Error al cambiar contraseña");
             }
         } finally {
             setIsLoading(false);
@@ -78,20 +75,21 @@ export const PersonalPage = () => {
     }
 
     return (
-        <div className="max-w-3xl mx-auto mt-10 p-6 bg-white shadow-md rounded-xl">
-            <h1 className="text-3xl font-bold text-center mb-2">Mi Cuenta</h1>
+        <div className="max-w-3xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-2xl">
+            <h1 className="text-4xl font-extrabold text-center mb-2 text-[#E56767]">
+                Mi Cuenta
+            </h1>
+
             <p className="text-center text-gray-600 mb-6">
-                ¡Bienvenido <span className="font-semibold">{user?.nombre}</span>!
+                Bienvenido <span className="font-semibold">{user?.nombre}</span>
             </p>
 
-            <div className="mb-8">
-                <span className="text-gray-700 text-lg">
-                    Nombre completo:{" "}
-                    <strong>{user?.nombre} {user?.apellido}</strong>
-                </span>
+            <div className="mb-8 text-center text-gray-700">
+                <strong className="text-lg">
+                    {user?.nombre} {user?.apellido}
+                </strong>
             </div>
 
-            {/* Mensajes globales */}
             {mensaje && (
                 <p className="mb-4 p-3 bg-green-100 text-green-700 rounded-lg border border-green-300">
                     {mensaje}
@@ -103,9 +101,11 @@ export const PersonalPage = () => {
                 </p>
             )}
 
-            {/* Sección de datos personales */}
-            <div className="p-6 border border-gray-200 rounded-lg mb-8 shadow-sm">
-                <h3 className="text-xl font-semibold mb-4">Editar información personal</h3>
+            {/* DATOS PERSONALES */}
+            <div className="p-6 border border-gray-200 rounded-xl mb-8 shadow-sm bg-gray-50">
+                <h3 className="text-xl font-bold text-[#E56767] mb-4">
+                    Editar información personal
+                </h3>
 
                 <form onSubmit={enviarActualizacionDatos} className="space-y-4">
                     <div>
@@ -115,7 +115,7 @@ export const PersonalPage = () => {
                             name="nombre"
                             value={formActualizarData.nombre}
                             onChange={asignarValoresFormulario}
-                            className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+                            className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-[#E56767]/40"
                         />
                     </div>
 
@@ -126,7 +126,7 @@ export const PersonalPage = () => {
                             name="apellido"
                             value={formActualizarData.apellido}
                             onChange={asignarValoresFormulario}
-                            className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+                            className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-[#E56767]/40"
                         />
                     </div>
 
@@ -136,23 +136,25 @@ export const PersonalPage = () => {
                             type="email"
                             value={user?.email}
                             disabled
-                            className="w-full px-4 py-2 border rounded-lg bg-gray-100 text-gray-600 cursor-not-allowed"
+                            className="w-full px-4 py-2 border rounded-lg bg-gray-200 cursor-not-allowed text-gray-600"
                         />
                     </div>
 
                     <button
                         type="submit"
                         disabled={isLoading}
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition"
+                        className="w-full py-2 rounded-lg text-white font-semibold bg-[#E56767] hover:bg-[#c95555] transition"
                     >
                         {isLoading ? "Guardando..." : "Actualizar datos"}
                     </button>
                 </form>
             </div>
 
-            {/* Sección de cambiar contraseña */}
-            <div className="p-6 border border-gray-200 rounded-lg shadow-sm">
-                <h3 className="text-xl font-semibold mb-4">Cambiar contraseña</h3>
+            {/* CAMBIAR CONTRASEÑA */}
+            <div className="p-6 border border-gray-200 rounded-xl shadow-sm bg-gray-50">
+                <h3 className="text-xl font-bold text-[#E56767] mb-4">
+                    Cambiar contraseña
+                </h3>
 
                 <form onSubmit={enviarPasswordActualizacionData} className="space-y-4">
                     <div>
@@ -162,7 +164,7 @@ export const PersonalPage = () => {
                             name="passwordActual"
                             value={formPasswordData.passwordActual}
                             onChange={asignarValoresPassword}
-                            className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+                            className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-[#E56767]/40"
                         />
                     </div>
 
@@ -173,21 +175,21 @@ export const PersonalPage = () => {
                             name="passwordNuevo"
                             value={formPasswordData.passwordNuevo}
                             onChange={asignarValoresPassword}
-                            className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+                            className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-[#E56767]/40"
                         />
                     </div>
 
                     <button
                         type="submit"
                         disabled={isLoading}
-                        className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg transition"
+                        className="w-full py-2 rounded-lg text-white font-semibold bg-[#E56767] hover:bg-[#c95555] transition"
                     >
                         {isLoading ? "Guardando..." : "Actualizar contraseña"}
                     </button>
                 </form>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default PersonalPage;

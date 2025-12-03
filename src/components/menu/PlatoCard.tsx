@@ -54,9 +54,9 @@ const PlatoCard = ({ plato, onToggleFavorito }: Props) => {
             {/* Imagen con badges */}
             <div className="relative">
                 <img
-                    src={plato.imagenUrl || "/placeholder-food.jpg"}
+                    src={plato.idPlato === 2? "/public/ceviche.png" : plato.imagenUrl || "/placeholder-food.jpg"}
                     alt={plato.nombre}
-                    className="w-full h-[200px] object-cover rounded-lg"
+                    className="w-full h-48 object-cover rounded-2xl"
                 />
 
                 {/* Badge destacado */}
