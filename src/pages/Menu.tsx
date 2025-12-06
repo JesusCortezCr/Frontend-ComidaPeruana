@@ -248,8 +248,10 @@ const Menu: React.FC = () => {
         <div className="opacity-0 translate-y-5 animate-fade-in delay-400">
           <PlatosLista
             platos={platos}
-            // Solo pasar onToggleFavorito si es cliente
+            // Solo pasar onToggleFavorito si es cliente necesariamente
             onToggleFavorito={user?.rol === 'CLIENTE' ? handleToggleFavorito : undefined}
+            //no se muestra boton de pedido
+            mostrarPedir={false}
           />
         </div>
       )}

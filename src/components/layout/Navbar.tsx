@@ -14,25 +14,24 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-20">
           {/* Navegación izquierda */}
           <div className="flex items-center gap-12">
-            <Link 
-              to="/home" 
+            <Link
+              to="/home"
               className="text-gray-700 hover:text-[#E56767] transition font-medium text-sm"
             >
               Inicio
             </Link>
-
-            <Link 
-              to="/menu" 
-              className="text-gray-700 hover:text-[#E56767] transition font-medium text-sm">
-              Menú
-            </Link>
-
-            <Link 
-              to="/nosotros" 
+            
+            <Link
+              to="/nosotros"
               className="text-gray-700 hover:text-[#E56767] transition font-medium text-sm gap-2">
               Nosotros
             </Link>
 
+            <Link
+              to="/menu"
+              className="text-gray-700 hover:text-[#E56767] transition font-medium text-sm">
+              Menú
+            </Link>
           </div>
 
           {/* Navegación derecha */}
@@ -41,8 +40,8 @@ const Navbar = () => {
               <>
                 {/* OPCIONES PARA ADMINISTRADOR */}
                 {user?.rol === 'ADMINISTRADOR' && (
-                  <Link 
-                    to="/admin/platos" 
+                  <Link
+                    to="/admin/platos"
                     className="bg-[#E56767] text-white px-4 py-2 rounded-lg hover:bg-[#d45656] transition font-medium text-sm shadow-sm"
                   >
                     📊 Panel Admin
@@ -51,23 +50,32 @@ const Navbar = () => {
 
                 {/* OPCIONES PARA CLIENTE - SOLO FAVORITOS */}
                 {user?.rol === 'CLIENTE' && (
-                  <Link 
-                    to="/favoritos" 
-                    className="text-gray-700 hover:text-[#E56767] transition font-medium text-sm flex items-center gap-1"
-                  >
-                    ❤️ Favoritos
-                  </Link>
+                  <>
+                    <Link
+                      to="/favoritos"
+                      className="text-gray-700 hover:text-[#E56767] transition font-medium text-sm flex items-center gap-1"
+                    >
+                      ❤️ Favoritos
+                    </Link>
+
+                    <Link
+                      to="/carrito"
+                      className="text-gray-700 hover:text-[#E56767] transition font-medium text-sm flex items-center gap-1"
+                    >
+                      🛒 Carrito
+                    </Link>
+                  </>
                 )}
 
                 {/* Opciones comunes para ambos */}
-                <Link 
-                  to="/cuenta-personal" 
+                <Link
+                  to="/cuenta-personal"
                   className="text-gray-700 hover:text-[#E56767] transition font-medium text-sm flex items-center gap-1"
                 >
                   👤 Mi Cuenta
                 </Link>
-                
-                <button 
+
+                <button
                   onClick={handleLogout}
                   className="text-gray-700 hover:text-[#E56767] transition font-medium text-sm flex items-center gap-1"
                 >
@@ -77,14 +85,14 @@ const Navbar = () => {
             ) : (
               /* Usuario no autenticado */
               <>
-                <Link 
-                  to="/inicio-sesion" 
+                <Link
+                  to="/inicio-sesion"
                   className="text-gray-700 hover:text-[#E56767] transition font-medium text-sm"
                 >
                   Iniciar Sesión
                 </Link>
-                <Link 
-                  to="/registro" 
+                <Link
+                  to="/registro"
                   className="bg-[#E56767] text-white px-4 py-2 rounded-lg hover:bg-[#d45656] transition font-medium text-sm shadow-sm"
                 >
                   Registrarse

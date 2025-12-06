@@ -6,9 +6,10 @@ type Props = {
     plato: Plato;
     onToggleFavorito?: (idPlato: number) => void;
     onPedirPlato?: (plato: Plato) => void; // mantenemos
+    mostrarPedir?: boolean; //muestra del boton de pedir
 };
 
-const PlatoCard = ({ plato, onToggleFavorito, onPedirPlato }: Props) => {
+const PlatoCard = ({ plato, onToggleFavorito, onPedirPlato, mostrarPedir =false }: Props) => {
     const { isAuthenticated, user } = useAuth();
     const navigate = useNavigate();
 
@@ -39,7 +40,7 @@ const PlatoCard = ({ plato, onToggleFavorito, onPedirPlato }: Props) => {
         if (onToggleFavorito) onToggleFavorito(plato.idPlato);
     };
 
-    // 🔥 Nuevo handler para pedir
+    //Nuevo handler para pedir
     const handlePedir = () => {
         if (!isAuthenticated) {
             alert("Inicia sesión para realizar un pedido");
@@ -55,7 +56,7 @@ const PlatoCard = ({ plato, onToggleFavorito, onPedirPlato }: Props) => {
     return (
         <div className="w-[375px] rounded-2xl p-2 gap-2 my-2 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] transition-transform duration-300 hover:-translate-y-2 bg-white">
 
-            {/* Imagen con badges */}
+            {/* Imagenes */}
             <div className="relative">
                 <img
                     src={plato.idPlato === 2? "/public/ceviche.png" : plato.imagenUrl || "/placeholder-food.jpg"}
@@ -128,7 +129,7 @@ const PlatoCard = ({ plato, onToggleFavorito, onPedirPlato }: Props) => {
                 )}
 
                 {/*botton de pedidos*/}
-                {user?.rol !== "ADMINISTRADOR" && (
+                {mostrarPedir && user?.rol !== "ADMINISTRADOR" && (
                     <button
                         onClick={handlePedir}
                         className="w-full p-1.5 rounded-2xl bg-green-600 text-white hover:bg-green-700 transition"

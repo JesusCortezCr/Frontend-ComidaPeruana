@@ -1,4 +1,4 @@
-// src/components/menu/PlatosLista.tsx
+
 
 import type { Plato } from "../../types/plato.type";
 import PlatoCard from "./PlatoCard";
@@ -6,10 +6,11 @@ import PlatoCard from "./PlatoCard";
 type Props = {
   platos: Plato[];
   onToggleFavorito?: (idPlato: number) => void;
-  onPedirPlato?: (plato: Plato) => void;  // 🆕 Agregar para que permita pedir
+  mostrarPedir?: boolean;
+  onPedirPlato?: (plato: Plato) => void; //manejo de pedidos
 };
 
-const PlatosLista = ({ platos, onToggleFavorito, onPedirPlato }: Props) => {
+const PlatosLista = ({ platos, onToggleFavorito, mostrarPedir = true, onPedirPlato }: Props) => {
   if (platos.length === 0) {
     return (
       <div className="text-center py-16">
@@ -31,6 +32,7 @@ const PlatosLista = ({ platos, onToggleFavorito, onPedirPlato }: Props) => {
           key={plato.idPlato}
           plato={plato}
           onToggleFavorito={onToggleFavorito}
+          mostrarPedir={mostrarPedir}
           onPedirPlato={onPedirPlato} //este pasa la funcion al card
         />
       ))}
