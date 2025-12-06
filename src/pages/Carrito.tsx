@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useCarrito, type ItemCarrito } from "../context/CarritoContext";
 import CompraExitosa from "../components/menu/CompraRealizada";
+import { useNavigate } from "react-router-dom";
 
 const Carrito = () => {
   const { carrito, setCarrito } = useCarrito();
   const [compraConfirmada, setCompraConfirmada] = useState(false);
   const [compraDatos, setCompraDatos] = useState<ItemCarrito[]>([]);
 
+  const navigate = useNavigate();
 
   const total = carrito.reduce((acc, p) => acc + p.total, 0);
 
@@ -21,6 +23,7 @@ const Carrito = () => {
 
   const handleVolverMenu = () => {
     setCompraConfirmada(false);
+    navigate("/menu");
   };
 
   if (compraConfirmada) {
@@ -39,7 +42,7 @@ const Carrito = () => {
   return (
     <div className="w-full min-h-screen bg-gray-50 p-6 md:p-10">
       <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 gap-5">
-        {/*Detalle de productos */}
+        {/*detalle de los productos*/}
         <div className="bg-white p-6 rounded-2xl shadow-md">
           <h1 className="text-2xl font-semibold mb-6 text-gray-800">
             Carrito de compras 🛍

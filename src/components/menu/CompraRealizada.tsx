@@ -36,7 +36,7 @@ const CompraExitosa: React.FC<Props> = ({ carrito, total, onVolverMenu }) => {
           onClick={onVolverMenu}
           className="bg-[#E56767] text-white px-6 py-3 rounded-full hover:bg-red-600 transition"
         >
-          Volver al menú
+          Volver al menú..
         </button>
       </div>
     </div>
