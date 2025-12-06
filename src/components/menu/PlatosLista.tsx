@@ -1,4 +1,4 @@
-// src/components/menu/PlatosLista.tsx (ACTUALIZAR)
+// src/components/menu/PlatosLista.tsx
 
 import type { Plato } from "../../types/plato.type";
 import PlatoCard from "./PlatoCard";
@@ -6,9 +6,10 @@ import PlatoCard from "./PlatoCard";
 type Props = {
   platos: Plato[];
   onToggleFavorito?: (idPlato: number) => void;
+  onPedirPlato?: (plato: Plato) => void;  // 🆕 Agregar para que permita pedir
 };
 
-const PlatosLista = ({ platos, onToggleFavorito }: Props) => {
+const PlatosLista = ({ platos, onToggleFavorito, onPedirPlato }: Props) => {
   if (platos.length === 0) {
     return (
       <div className="text-center py-16">
@@ -30,6 +31,7 @@ const PlatosLista = ({ platos, onToggleFavorito }: Props) => {
           key={plato.idPlato}
           plato={plato}
           onToggleFavorito={onToggleFavorito}
+          onPedirPlato={onPedirPlato} //este pasa la funcion al card
         />
       ))}
     </div>

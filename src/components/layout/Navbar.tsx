@@ -10,33 +10,33 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex justify-between items-center h-16">
+      <div className="max-w-7xl mx-auto px-7">
+        <div className="flex justify-between items-center h-20">
           {/* Navegación izquierda */}
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-12">
             <Link 
               to="/home" 
               className="text-gray-700 hover:text-[#E56767] transition font-medium text-sm"
             >
-              Home
+              Inicio
             </Link>
 
             <Link 
               to="/menu" 
-              className="text-gray-700 hover:text-[#E56767] transition font-medium text-sm"
-            >
+              className="text-gray-700 hover:text-[#E56767] transition font-medium text-sm">
               Menú
             </Link>
+
             <Link 
               to="/nosotros" 
-              className="text-gray-700 hover:text-[#E56767] transition font-medium text-sm"
-            >
+              className="text-gray-700 hover:text-[#E56767] transition font-medium text-sm gap-2">
               Nosotros
             </Link>
+
           </div>
 
           {/* Navegación derecha */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-8">
             {isAuthenticated ? (
               <>
                 {/* OPCIONES PARA ADMINISTRADOR */}
